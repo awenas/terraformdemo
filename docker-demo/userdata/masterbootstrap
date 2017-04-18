@@ -16,7 +16,7 @@ wget https://raw.githubusercontent.com/awenas/terraformdemo/master/docker-demo/m
 
 wget https://raw.githubusercontent.com/awenas/terraformdemo/blob/master/docker-demo/master/etcd.conf -O /etc/etcd/etcd.conf
 
-https://raw.githubusercontent.com/awenas/terraformdemo/master/docker-demo/master/apiserver -O /etc/kubernetes/apiserver
+wget https://raw.githubusercontent.com/awenas/terraformdemo/master/docker-demo/master/apiserver -O /etc/kubernetes/apiserver
 
 systemctl start etcd
 etcdctl mkdir /kube-centos/network
