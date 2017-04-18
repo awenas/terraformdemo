@@ -1,0 +1,24 @@
+#!/bin/bash
+echo "Yum update"
+yum update -y
+
+setenforce 0
+systemctl stop firewalld
+systemctl disable firewalld
+
+wget -P /etc/yum.repos.d/  https://raw.githubusercontent.com/awenas/terraformdemo/master/docker-demo/virt7-docker-common-release.repo
+
+yum -y install --enablerepo=virt7-docker-common-release kubernetes etcd flannel
+
+wget https://raw.githubusercontent.com/awenas/terraformdemo/master/docker-demo/hosts -O /etc/hosts
+
+systemctl start etcd
+etcdctl mkdir /kube-centos/network
+etcdctl mk /kube-centos/network/config "{ \"Network\": \"172.30.0.0/16\", \"SubnetLen\": 24, \"Backend\": { \"Type\": \"vxlan\" } }"
+
+
+for SERVICES in etcd kube-apiserver kube-controller-manager kube-scheduler flanneld; do
+    systemctl restart $SERVICES
+    systemctl enable $SERVICES
+    systemctl status $SERVICES
+done
