@@ -6,5 +6,22 @@ setenforce 0
 systemctl stop firewalld
 systemctl disable firewalld
 
+wget -P /etc/yum.repos.d/  https://raw.githubusercontent.com/awenas/terraformdemo/master/docker-demo/virt7-docker-common-release.repo
+
 yum -y install --enablerepo=virt7-docker-common-release kubernetes etcd flannel
 
+wget https://raw.githubusercontent.com/awenas/terraformdemo/master/docker-demo/hosts -O /etc/hosts
+
+wget https://raw.githubusercontent.com/awenas/terraformdemo/master/docker-demo/minion/kubelet -O  /etc/kubernetes/kubelet 
+
+wget https://raw.githubusercontent.com/awenas/terraformdemo/master/docker-demo/master/flanneld -O /etc/sysconfig/flanneld
+
+for SERVICES in kube-proxy kubelet flanneld docker; do
+    systemctl restart $SERVICES
+    systemctl enable $SERVICES
+    systemctl status $SERVICES
+done
+
+kubectl config set-cluster default-cluster --server=http://centos-master:8080
+kubectl config set-context default-context --cluster=default-cluster --user=default-admin
+kubectl config use-context default-context
