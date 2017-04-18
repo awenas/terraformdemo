@@ -1,0 +1,4 @@
+STORAGE_DRIVER=devicemapper
+DEVS=/var/lib/docker_file
+VG=docker-vg
+AUTO_EXTEND_POOL=true
