@@ -14,7 +14,7 @@ wget https://raw.githubusercontent.com/awenas/terraformdemo/master/docker-demo/h
 
 wget https://raw.githubusercontent.com/awenas/terraformdemo/master/docker-demo/master/config -O /etc/kubernetes/config
 
-wget https://raw.githubusercontent.com/awenas/terraformdemo/blob/master/docker-demo/master/etcd.conf -O /etc/etcd/etcd.conf
+wget https://raw.githubusercontent.com/awenas/terraformdemo/master/docker-demo/master/etcd.conf -O /etc/etcd/etcd.conf
 
 wget https://raw.githubusercontent.com/awenas/terraformdemo/master/docker-demo/master/apiserver -O /etc/kubernetes/apiserver
 
