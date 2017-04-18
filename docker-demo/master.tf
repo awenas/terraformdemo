@@ -8,5 +8,5 @@ resource "baremetal_core_instance" "Master" {
   subnet_id = "${baremetal_core_subnet.MasterSubnet.id}"
   metadata {
     ssh_authorized_keys = "${var.ssh_public_key}"
-    user_data = "${base64encode(file(var.BootStrapFile))}"}
+    user_data = "${base64encode(file(var.MasterBootStrapFile))}"}
 }

@@ -38,6 +38,10 @@ variable "256GB" {
     default = "262144"
 }
 
-variable "BootStrapFile" {
-    default = "./userdata/bootstrap"
+variable "MasterBootStrapFile" {
+    default = "./userdata/masterbootstrap"
+}
+
+variable "MinionBootStrapFile" {
+    default = "./userdata/minionbootstrap"
 }
