@@ -16,6 +16,10 @@ wget https://raw.githubusercontent.com/awenas/terraformdemo/master/docker-demo/m
 
 wget https://raw.githubusercontent.com/awenas/terraformdemo/master/docker-demo/master/flanneld -O /etc/sysconfig/flanneld
 
+mkfile 1G /var/lib/docker_file
+
+wget https://raw.githubusercontent.com/awenas/terraformdemo/minion/docker-demo/minion/docker-storage-setup -O /etc/sysconfig/docker-storage-setup
+
 for SERVICES in kube-proxy kubelet flanneld docker; do
     systemctl restart $SERVICES
     systemctl enable $SERVICES
